@@ -1,6 +1,8 @@
 package likun.po;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -8,11 +10,11 @@ import java.util.LinkedHashSet;
 /**
  * Created by Administrator on 2016/11/29.
  */
-//@Document
+@Document
 public class Order {
     @Id
     private String id;
-  //  @Field("client")
+    @Field("client")
     private String customer;
 
     private String type;

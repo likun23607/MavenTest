@@ -8,6 +8,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -33,6 +36,8 @@ public class HomeController {
     UserService userService;
     @Autowired
     MongoTemplate mongoTemplate;
+    @Autowired
+    protected RedisTemplate redisTemplate;
 
     @RequestMapping(value="showHomePage",method=GET)
     public String showHomePage( String username,Model model){
@@ -53,13 +58,27 @@ public class HomeController {
         order2.setId("123458");
         order2.setCustomer("wangzhang");
         order2.setType("small");
+        Order order3=new Order();
+        order3.setId("123459");
+        order3.setCustomer("likun");
+        order2.setType("small");
         mongoTemplate.save(order);
         mongoTemplate.save(order2);
+        mongoTemplate.save(order3);
+
         System.out.println();
-        java.util.List<Order> orders=mongoTemplate.findAll(Order.class);
-        return "sucess";
+        java.util.List<Order> orders=mongoTemplate.find(Query.query(Criteria.where("client").is("likun")),Order.class);
+        return "success";
     }
 
-
+    @RequestMapping(value = "redisTest",method = RequestMethod.POST)
+    public String redisTest(HttpServletRequest request){
+        Order order=new Order();
+        order.setId("123456");
+        order.setCustomer("likun");
+        redisTemplate.opsForValue().set("001",order);
+        Order orders= (Order) redisTemplate.opsForValue().get("001");
+        return "success";
+    }
 
 }

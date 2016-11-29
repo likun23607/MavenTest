@@ -1,12 +1,9 @@
 package likun.ctrl;
 
 import likun.po.Order;
+import likun.po.User;
 import likun.service.UserService;
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -14,15 +11,11 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-
-import java.util.ArrayList;
+import java.io.Serializable;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -31,7 +24,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * Created by Administrator on 2016/11/24.
  */
 @Controller
-public class HomeController {
+public class HomeController implements Serializable {
     @Autowired
     UserService userService;
     @Autowired
@@ -73,11 +66,15 @@ public class HomeController {
 
     @RequestMapping(value = "redisTest",method = RequestMethod.POST)
     public String redisTest(HttpServletRequest request){
-        Order order=new Order();
-        order.setId("123456");
-        order.setCustomer("likun");
-        redisTemplate.opsForValue().set("001",order);
-        Order orders= (Order) redisTemplate.opsForValue().get("001");
+        User user=new User();
+        user.setName("likun");
+        user.setSex("男");
+        user.setAddr("河北邯郸");
+        user.setAge(1000);
+        redisTemplate.opsForValue().set("001","likun");
+        String s= (String) redisTemplate.opsForValue().get("001");
+        redisTemplate.opsForValue().set("001",user);
+        User users= (User) redisTemplate.opsForValue().get("001");
         return "success";
     }
 

@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 
@@ -11,7 +12,7 @@ import java.util.LinkedHashSet;
  * Created by Administrator on 2016/11/29.
  */
 @Document
-public class Order {
+public class Order{
     @Id
     private String id;
     @Field("client")
@@ -19,7 +20,6 @@ public class Order {
 
     private String type;
 
-    private Collection<Item> items=new LinkedHashSet<Item>();
 
     public String getId() {
         return id;
@@ -45,11 +45,4 @@ public class Order {
         this.type = type;
     }
 
-    public Collection<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(Collection<Item> items) {
-        this.items = items;
-    }
 }

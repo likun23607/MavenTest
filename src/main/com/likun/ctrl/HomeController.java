@@ -5,8 +5,6 @@ import likun.po.User;
 import likun.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,16 +22,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * Created by Administrator on 2016/11/24.
  */
 @Controller
-public class HomeController implements Serializable {
+public class HomeController {
     @Autowired
     UserService userService;
-    @Autowired
-    MongoTemplate mongoTemplate;
-    @Autowired
-    protected RedisTemplate redisTemplate;
+//    MongoTemplate mongoTemplate;
+ //  protected RedisTemplate redisTemplate;
 
     @RequestMapping(value="showHomePage",method=GET)
-    public String showHomePage( String username,Model model){
+    public String showHomePage(String username,Model model){
 
         if (!StringUtils.isEmpty(username)) {
             model.addAttribute("opt", "李锟");
@@ -55,12 +51,13 @@ public class HomeController implements Serializable {
         order3.setId("123459");
         order3.setCustomer("likun");
         order2.setType("small");
-        mongoTemplate.save(order);
+ /*       mongoTemplate.save(order);
         mongoTemplate.save(order2);
         mongoTemplate.save(order3);
 
         System.out.println();
         java.util.List<Order> orders=mongoTemplate.find(Query.query(Criteria.where("client").is("likun")),Order.class);
+  */
         return "success";
     }
 
@@ -71,11 +68,13 @@ public class HomeController implements Serializable {
         user.setSex("男");
         user.setAddr("河北邯郸");
         user.setAge(1000);
-        redisTemplate.opsForValue().set("001","likun");
-        String s= (String) redisTemplate.opsForValue().get("001");
-        redisTemplate.opsForValue().set("001",user);
-        User users= (User) redisTemplate.opsForValue().get("001");
+//        redisTemplate.opsForValue().set("001","likun");
+  //      String s= (String) redisTemplate.opsForValue().get("001");
+ //       redisTemplate.opsForValue().set("001",user);
+  //      User users= (User) redisTemplate.opsForValue().get("001");
         return "success";
     }
+
+
 
 }

@@ -1,10 +1,13 @@
 package likun.po;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/11/24.
  */
 
-public class Spitter {
+public class Spitter implements Serializable{
+    private static final long serialVersionUID = 21287917233879L;
     private String name;
 
     private String sex;

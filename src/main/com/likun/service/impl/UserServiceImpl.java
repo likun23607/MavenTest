@@ -16,4 +16,8 @@ public class UserServiceImpl implements UserService{
     public void addMongoObj(Order order) {
 
     }
+
+    public String sayHello(String s) {
+        return s;
+    }
 }

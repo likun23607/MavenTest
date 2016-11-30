@@ -7,4 +7,5 @@ import likun.po.Order;
  */
 public interface UserService {
     public void addMongoObj(Order order);
+    public String sayHello(String s);
 }

@@ -1,7 +1,5 @@
 package likun.po;
 
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializer;
 
 import java.io.Serializable;
 

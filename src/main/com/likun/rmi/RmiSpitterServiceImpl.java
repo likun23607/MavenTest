@@ -13,4 +13,10 @@ public class RmiSpitterServiceImpl implements RmiSpitterService {
     public String sayHello(String s) {
         return s;
     }
+
+    public Spitter getSp() {
+        Spitter s= new Spitter();
+        s.setName("likun1111");
+        return s;
+    }
 }

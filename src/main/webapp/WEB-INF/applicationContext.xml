@@ -13,8 +13,6 @@
  <!--   <import resource="mongodb-applicationContext.xml"/>-->
     <!--   <import resource="redis-applicationContext.xml"/>-->
 
-      <cache:annotation-driven/>
-      <bean id="cacheManager" class="org.springframework.cache.concurrent.ConcurrentMapCacheManager"/>
+    <import resource="activemq-config.xml"/>
 
-
-  </beans>
+</beans>

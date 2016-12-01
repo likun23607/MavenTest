@@ -8,4 +8,5 @@ import likun.po.Spitter;
 public interface RmiSpitterService {
     public String saveSpitter(Spitter spitter);
     public String sayHello(String s);
+    public Spitter getSp();
 }

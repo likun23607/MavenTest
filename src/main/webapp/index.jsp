@@ -5,6 +5,8 @@
 
     <input type="submit"/>
 
+    <a  onclick="" href="/jmsTest.do">jmsTest</a>
+
 </form>
 </body>
 </html>

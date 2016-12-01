@@ -1,9 +1,11 @@
 package likun.ctrl;
 
+import likun.mq.ProducerService;
 import likun.po.Order;
 import likun.po.User;
 import likun.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.jms.Destination;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 
@@ -25,6 +28,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class HomeController {
     @Autowired
     UserService userService;
+    @Autowired
+    private ProducerService producerService;
+    @Autowired
+    @Qualifier("queueDestination")
+    private Destination destination;
 //    MongoTemplate mongoTemplate;
  //  protected RedisTemplate redisTemplate;
 
@@ -75,6 +83,13 @@ public class HomeController {
         return "success";
     }
 
+    @RequestMapping(value = "jmsTest",method = RequestMethod.GET)
+    public String jmsTest(HttpServletRequest request){
+        for (int i=0; i<2; i++) {
+            producerService.sendMessage(destination, "你好，生产者！这是消息：" + (i+1));
+        }
+        return "success";
+    }
 
 
 }

@@ -8,7 +8,7 @@ import likun.po.Spitter;
 public class RmiSpitterServiceImpl implements RmiSpitterService {
     public String saveSpitter(Spitter spitter) {
         System.out.println(spitter.getName());
-        return "true";
+        return "true1111";
     }
     public String sayHello(String s) {
         return s;

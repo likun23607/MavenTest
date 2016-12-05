@@ -28,11 +28,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class HomeController {
     @Autowired
     UserService userService;
+
     @Autowired
     private ProducerService producerService;
-    @Autowired
-    @Qualifier("queueDestination")
-    private Destination destination;
+   // private Destination destination;
 //    MongoTemplate mongoTemplate;
  //  protected RedisTemplate redisTemplate;
 
@@ -86,7 +85,7 @@ public class HomeController {
     @RequestMapping(value = "jmsTest",method = RequestMethod.GET)
     public String jmsTest(HttpServletRequest request){
         for (int i=0; i<2; i++) {
-            producerService.sendMessage(destination, "你好，生产者！这是消息：" + (i+1));
+      //      producerService.sendMessage(destination, "你好，生产者！这是消息：" + (i+1));
         }
         return "success";
     }

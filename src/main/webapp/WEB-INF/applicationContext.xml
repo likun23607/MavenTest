@@ -12,7 +12,9 @@
     <!-- 导入mongodb的配置文件 -->
  <!--   <import resource="mongodb-applicationContext.xml"/>-->
     <!--   <import resource="redis-applicationContext.xml"/>-->
+    <!--MQ-->
+    <!--<import resource="activemq-config.xml"/>-->
+    <import resource="websocked-config.xml"/>
 
-    <import resource="activemq-config.xml"/>
 
 </beans>

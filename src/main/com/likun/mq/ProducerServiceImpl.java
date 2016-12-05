@@ -32,10 +32,10 @@ public class ProducerServiceImpl implements ProducerService{
         return jmsTemplate;
     }
 
-    @Resource
-    public void setJmsTemplate(JmsTemplate jmsTemplate) {
-        this.jmsTemplate = jmsTemplate;
-    }
+    //@Resource
+  //  public void setJmsTemplate(JmsTemplate jmsTemplate) {
+   //     this.jmsTemplate = jmsTemplate;
+    //}
 
 
 }

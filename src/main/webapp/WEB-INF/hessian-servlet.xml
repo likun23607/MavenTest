@@ -6,5 +6,10 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <bean id="rmiSpitterService" class="likun.rmi.RmiSpitterServiceImpl" />
 
+    <bean name="/rmiSpitterService" class="org.springframework.remoting.caucho.HessianServiceExporter">
+    <property name="service" ref="rmiSpitterService" />
+    <property name="serviceInterface" value="likun.rmi.RmiSpitterService" />
+    </bean>
 </beans>
